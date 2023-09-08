@@ -1,5 +1,5 @@
 import os
-import time
+import timeit
 os.system('cls')
 
 # Python program for implementation of Bubble Sort
@@ -41,7 +41,19 @@ def insertionSort(arr):
         while j >= 0 and key < arr[j]:  # Move elements greater than key one position ahead
             arr[j+1] = arr[j]  # Shift elements to the right
             j -= 1
-        arr[j+1] = key  #
+        arr[j+1] = key 
+
+def selectionSort(array, size):
+    
+    for ind in range(size):
+        min_index = ind
+ 
+        for j in range(ind + 1, size):
+            # select the minimum element in every iteration
+            if array[j] < array[min_index]:
+                min_index = j
+         # swapping the elements to sort the array
+        (array[ind], array[min_index]) = (array[min_index], array[ind])
 
 # Driver code to test above
 arr1 = [64, 34, 25, 12, 22, 11, 90]
@@ -50,8 +62,14 @@ arr2 = [64, 34, 25, 12, 22, 11, 90]
 
 print(f'The unsorted array is: {arr1}')
 
-bubble_start_time = time.time()
-bubbleSort(arr1)
-bubble_end_time = "--- %s seconds ---" % (time.time() - bubble_start_time)
-print(f"Sorted Bubble sorted array is: {arr1}, and took {bubble_end_time}")
+time = timeit.timeit(f"{bubbleSort(arr1)}")
+print(f"Sorted Bubble sort array is: {arr1}, and took {time} seconds")
+
+time = timeit.timeit(f"{insertionSort(arr2)}")
+print(f"Sorted insertion sort array is: {arr2}, and took {time} seconds")
+
+time = timeit.timeit(f"{selectionSort(arr3, len(arr3))}")
+print(f"Sorted selection sort array is: {arr3}, and took {time} seconds")
+
+
 
